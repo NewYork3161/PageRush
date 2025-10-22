@@ -69,7 +69,7 @@ PageRush enters an expanding digital marketplace with high growth potential.
 
 ### Online Book Services Global Market Report (2025)
 
-![ChartOne](ChartOne.png)
+![ChartOne](images/ChartOne.png)
 
 According to **The Business Research Company (2025)**, the global online book services market is projected to grow from **$23.1 billion in 2024** to **$34.92 billion by 2029**, representing a compound annual growth rate (CAGR) of **9.0%**.  
 This growth highlights the continued rise in online reading and e-commerce activity across the publishing sector.
@@ -78,7 +78,7 @@ This growth highlights the continued rise in online reading and e-commerce activ
 
 ### Book Format Distribution – 2025
 
-![ChartTwo](ChartTwo.png)
+![ChartTwo](images/ChartTwo.png)
 
 Data from the **Association of American Publishers (AAP)** shows the distribution of book formats as follows:
 - Hardback: 37.8%  
