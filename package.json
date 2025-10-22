@@ -1,14 +1,24 @@
 {
-  "name": "webproject",
+  "name": "pagerush",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "PageRush is a full-stack e-commerce bookstore built with Node.js, Express, EJS, and MongoDB. It allows readers to discover, buy, and sell books online with a seamless and secure experience.",
+  "main": "app.js",
   "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "bookstore",
+    "ecommerce",
+    "nodejs",
+    "express",
+    "mongodb",
+    "ejs",
+    "pagerush"
+  ],
+  "author": "Michael Clark",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "dotenv": "^17.2.3",
     "ejs": "^3.1.10",
@@ -16,5 +26,11 @@
     "method-override": "^3.0.0",
     "mongoose": "^8.19.2",
     "multer": "^2.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

@@ -1,54 +1,56 @@
-import express from "express";
-import mongoose from "mongoose";
-import methodOverride from "method-override";
-import dotenv from "dotenv";
-import multer from "multer";
-import path from "path";
-import { fileURLToPath } from "url";
-
-dotenv.config();
+// ===============================================
+// PageRush - Full Express App Configuration
+// ===============================================
+const express = require("express");
+const mongoose = require("mongoose");
+const methodOverride = require("method-override");
+const path = require("path");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Resolve __dirname in ES modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// ====== MongoDB Connection ======
+const MONGO_URI = "mongodb+srv://root:d4OYsSyHqLrwnZHv@cluster0.mmhyyv3.mongodb.net/PageRushDB?retryWrites=true&w=majority&appName=Cluster0";
 
-// Middleware setup
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(methodOverride("_method"));
-app.use(express.static(path.join(__dirname, "public")));
 
-// --- Multer Setup for image uploads ---
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, "public/uploads"),
-  filename: (req, file, cb) =>
-    cb(null, Date.now() + path.extname(file.originalname))
-});
-const upload = multer({ storage });
-
-// --- MongoDB Connection ---
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => console.log("✅ Connected to MongoDB Atlas"))
   .catch((err) => console.error("❌ MongoDB connection error:", err));
 
-// --- Routes ---
+// ====== Middleware ======
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(methodOverride("_method"));
 app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+app.use(express.static(path.join(__dirname, "public")));
 
-// Home Route
+// ====== Import and Mount Routes ======
+const userSignupRoutes = require("./routes/userSignup");
+app.use("/", userSignupRoutes);
+
+// ====== Routes ======
+
+// Home Route - renders the main page
 app.get("/", (req, res) => {
-  res.render("index", { title: "Books R Us API Demo" });
+  res.render("home", { title: "PageRush | Home" });
 });
 
-// Image Upload Route
-app.post("/upload", upload.single("image"), (req, res) => {
-  res.send(`Image uploaded successfully: ${req.file.filename}`);
+// Example route placeholder
+app.get("/about", (req, res) => {
+  res.send("<h1>About PageRush</h1><p>This is a placeholder route.</p>");
 });
 
-// --- Start Server ---
-app.listen(PORT, () =>
-  console.log(`🚀 Server running at http://localhost:${PORT}`)
-);
+// ====== 404 Fallback ======
+app.use((req, res) => {
+  res.status(404).send("<h1>404 Not Found</h1><p>The page you requested does not exist.</p>");
+});
+
+// ====== Start Server ======
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+});
