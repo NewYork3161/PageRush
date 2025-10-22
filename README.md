@@ -75,13 +75,4 @@ When a search is made for a book not found in the platform’s internal catalog,
 
 This ensures that readers always find what they’re looking for, and PageRush remains a complete, global book discovery platform.
 
----
 
-## Example Setup
-
-**Installation**
-
-```bash
-git clone https://github.com/NewYork3161/PageRush.git
-cd PageRush
-npm install
